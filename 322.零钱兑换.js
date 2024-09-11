@@ -21,7 +21,7 @@ var coinChange = function(coins, amount) {
     dp[0] = 0;
     for (let i = 1; i <= n; i++) {
         for (let a = 1; a <= amount; a++) {
-            if (conis[i] > a) {
+            if (coins[i-1] > a) {
                 dp[a] = dp[a]
             } else {
                 dp[a] = Math.min(dp[a], dp[a - coins[i-1]] + 1)
