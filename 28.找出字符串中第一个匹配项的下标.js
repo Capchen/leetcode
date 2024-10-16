@@ -9,6 +9,7 @@
  * @param {string} haystack
  * @param {string} needle
  * @return {number}
+ * 暴力方法
  */
 var strStr = function(haystack, needle) {
     if (needle.length > haystack.length) {
@@ -36,3 +37,28 @@ var strStr = function(haystack, needle) {
 };
 // @lc code=end
 
+// KMP算法，关键是获取最长相等前后缀数组，
+// 通过前后缀数组，可以获取到每个字符匹配失败时，应该跳转到的位置 跳转步数 = 已匹配的字符数 - 对应的前后缀数组
+// ABABCABAB
+const computeLPS = (pattern) => {
+    const lps = new Array(pattern.length).fill(0)
+    let len = 0
+    let i = 1
+    while (i < pattern.length) {
+        if (pattern[i] === pattern[len]) {
+            len++
+            lps[i] = len
+            i++
+        } else {
+            if (len !== 0) {
+                len = lps[len - 1]
+            } else {
+                lps[i] = 0
+                i++
+            }
+        }
+    }
+    return lps
+}
+
+[0,0]
