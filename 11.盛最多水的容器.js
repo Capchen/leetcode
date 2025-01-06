@@ -20,7 +20,7 @@ var maxArea = function(height) {
     let right = height.length - 1
     while (left < right) {
         let h = Math.min(height[left], height[right])
-        max = Math.max(max, h * (right - left))
+        max = Math.max(max, h * (right - left)) // 容积就是短板的高度乘以两个指针之间的距离
         if (height[left] < height[right]) {
             left++
         } else {
@@ -30,4 +30,3 @@ var maxArea = function(height) {
     return max
 };
 // @lc code=end
-
