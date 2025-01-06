@@ -10,20 +10,25 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let result = []
-    const map = new Map()
-    for (let i = 0; i < nums.length; i++) {
-        const val = target - nums[i]
-        console.log(val)
-        console.log(map.has(nums[i]))
-        if (map.has(nums[i])) {
-            result = [map.get(nums[i]), i]
-            break
-        } else {
-            map.set(val, i)
-        }
+    
+  // 1. 暴力解法
+  // for (let i = 0; i < nums.length; i++) {
+  //   for (let j = i + 1; j < nums.length; j++) {
+  //     if (nums[i] + nums[j] === target) {
+  //       return [i, j]
+  //     }
+  //   }
+  // }
+
+  // 2. 哈希表
+  let map = new Map()
+  for (let i = 0; i < nums.length; i++) {
+    let diff = target - nums[i]
+    if (map.has(diff)) {
+      return [map.get(diff), i]
     }
-    return result
+    map.set(nums[i], i)
+  }
 };
 
 twoSum([2,7,11,15], 9)
