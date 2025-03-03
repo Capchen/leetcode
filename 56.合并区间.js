@@ -27,6 +27,7 @@ var merge = function(intervals) {
         tempDiff = current;
       }
     }
+    return res;
 };
 // @lc code=end
 
